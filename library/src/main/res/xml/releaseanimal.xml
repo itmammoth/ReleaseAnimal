@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<releaseNotes>
+    <note versionName="0.0.0.1" date="1900-01-01">
+        <message>- Never show the notes that had been released before installing the app</message>
+    </note>
+    <note versionName="0.0.0.2" date="2016-11-16">
+        <message>- New awesome features!</message>
+        <message>- Small bug fixes</message>
+    </note>
+    <note versionName="0.0.1.0" date="2016-11-16">
+        <message>- Foo bar yeah!</message>
+        <message>- Pen pineapple apple pen!</message>
+        <message>- Blah blah blah</message>
+    </note>
+    <note versionName="9.9.9.9" date="2999-12-31">
+        <message>- Never show the notes that will be released in future</message>
+    </note>
+</releaseNotes>
