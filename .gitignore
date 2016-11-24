@@ -8,4 +8,6 @@
 /captures
 .externalNativeBuild
 
+/release.sh
+
 .DS_Store
