@@ -30,6 +30,9 @@ android {
         exclude 'META-INF/dependencies.txt'
         exclude 'META-INF/LGPL2.1'
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
 dependencies {
@@ -48,6 +51,6 @@ publish {
     groupId = 'itmammoth.releaseanimal'
     artifactId = 'ReleaseAnimal'
     publishVersion = '0.0.1'
-    desc = 'Display release notes dialog without pain.'
-    website = 'https://github.com/novoda/bintray-release'
+    desc = 'An android library to display release notes dialog without pain.'
+    website = 'https://github.com/itmammoth/ReleaseAnimal'
 }
