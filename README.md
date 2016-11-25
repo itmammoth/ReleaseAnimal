@@ -32,7 +32,7 @@ All you have to do is to create `res/xml/releaseanimal.xml` in your project dire
 - ReleaseAnimal never shows notes that have already been shown to users again.
 - ReleaseAnimal never shows notes that had been released before the user installed your app.
 - ReleaseAnimal never shows notes that have future `date`.
-- Add attribute `force="true"` to force to show a note.
+- Add attribute `force="true"` to force to show a note. (Probably for test)
 
 # Configuration
 
