@@ -6,7 +6,11 @@ ReleaseAnimal is an android library to display release notes dialog without pain
 # Installation
 Append the code below in your `build.gradle`.
 
-    compile 'itmammoth.releaseanimal:ReleaseAnimal:0.0.3'
+    dependencies {
+        ...
+            compile 'itmammoth.releaseanimal:ReleaseAnimal:0.0.3'
+        ...
+    }
 
 # Usage
 
