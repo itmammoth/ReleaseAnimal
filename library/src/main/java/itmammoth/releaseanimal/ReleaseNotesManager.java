@@ -2,25 +2,34 @@ package itmammoth.releaseanimal;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-class ReleaseNotes {
+class ReleaseNotesManager {
 
-    private final Preference pref;
+    private final Preference preference;
     private final EssentialPackageInfo packageInfo;
     private final VersionManager versionManager;
     private final List<ReleaseNote> notes;
 
-    ReleaseNotes(@NonNull Context context) {
-        pref = new Preference(context);
+    ReleaseNotesManager(@NonNull Context context) {
+        preference = new Preference(context);
         packageInfo = EssentialPackageInfo.getInstance(context);
-        versionManager = new VersionManager(packageInfo.versionName, pref.getLastShownVersionName());
+        versionManager = new VersionManager(packageInfo.versionName, preference.getLastShownVersionName());
         notes = new Parser(context.getResources().getXml(R.xml.releaseanimal)).parse();
-        Log.d(Constant.LOG_TAG, notes.toString());
+    }
+
+    ReleaseNotesManager(
+            @NonNull Preference preference,
+            @NonNull EssentialPackageInfo packageInfo,
+            @NonNull VersionManager versionManager,
+            @NonNull List<ReleaseNote> notes) {
+        this.preference = preference;
+        this.packageInfo = packageInfo;
+        this.versionManager = versionManager;
+        this.notes = notes;
     }
 
     /**
@@ -32,15 +41,15 @@ class ReleaseNotes {
     }
 
     /**
-     * Returns whether there are any messages that haven't been shown yet.
+     * Returns whether there are any notes that haven not been shown yet.
      * @return whether there are or not
      */
-    boolean hasUnshownMessages() {
-        return versionManager.versionUpdated() && hasUnshownNotes();
+    boolean hasUnshownNotes() {
+        return hasForceNotes() || (versionManager.versionUpdated() && getUnshownNotes().size() > 0);
     }
 
     /**
-     * Returns messages that haven't shown yet
+     * Returns messages that haven not shown yet
      * @return Not shown messages
      */
     String getUnshownMessages() {
@@ -63,7 +72,14 @@ class ReleaseNotes {
     void markShown() {
         List<ReleaseNote> unshownNotes = getUnshownNotes();
         VersionName newLatestShownVersionName = unshownNotes.get(unshownNotes.size() - 1).versionName;
-        pref.markShown(newLatestShownVersionName.toString());
+        preference.markShown(newLatestShownVersionName.toString());
+    }
+
+    private boolean hasForceNotes() {
+        for (ReleaseNote note : notes) {
+            if (note.force) return true;
+        }
+        return false;
     }
 
     private List<ReleaseNote> getUnshownNotes() {
@@ -76,13 +92,11 @@ class ReleaseNotes {
         return notShownNotes;
     }
 
-    private boolean hasUnshownNotes() {
-        return getUnshownNotes().size() > 0;
-    }
-
     private boolean needToShow(ReleaseNote note) {
-        return      versionManager.needToShow(note.versionName)
-                &&  note.date.compareTo(packageInfo.firstInstallDate) >= 0
-                &&  note.date.compareTo(new Date()) <= 0;
+        return note.force || (
+                versionManager.needToShow(note.versionName)
+            &&  note.date.compareTo(packageInfo.firstInstallDate) >= 0
+            &&  note.date.compareTo(new Date()) <= 0
+        );
     }
 }

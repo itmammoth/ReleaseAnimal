@@ -15,8 +15,8 @@ import java.util.Locale;
 
 class Parser {
 
-    private final XmlResourceParser parser;
     static final SimpleDateFormat SDF = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    private final XmlResourceParser parser;
 
     Parser(XmlResourceParser parser) {
         this.parser = parser;
@@ -38,6 +38,7 @@ class Parser {
                             note = new ReleaseNote();
                             note.versionName = new VersionName(parser.getAttributeValue(null, "versionName"));
                             note.date = SDF.parse(parser.getAttributeValue(null, "date"));
+                            note.force = parser.getAttributeBooleanValue(null, "force", false);
                             note.messages = new ArrayList<>();
                         } else if ("message".equals(name)) {
                             assert note != null;

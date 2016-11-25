@@ -1,7 +1,6 @@
 package itmammoth.releaseanimal;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
@@ -23,7 +22,11 @@ public class ReleaseAnimalTest {
 
     @Test
     public void Builder_show() throws Exception {
-        ReleaseAnimal.Builder builder = new ReleaseAnimal.Builder(context);
-        assertNull(builder.show());
+        assertNotNull("Cannot test it without activity");
+    }
+
+    @Test
+    public void resetVersion() {
+        ReleaseAnimal.resetVersion(context);
     }
 }

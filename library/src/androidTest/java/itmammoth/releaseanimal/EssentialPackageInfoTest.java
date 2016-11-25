@@ -24,8 +24,8 @@ public class EssentialPackageInfoTest {
     public void getInstance() throws Exception {
         EssentialPackageInfo essentialPackageInfo = EssentialPackageInfo.getInstance(context);
         assertTrue(essentialPackageInfo != null);
-        // Fixme: Why null?
-        assertEquals("0.1.0", essentialPackageInfo.versionName);
+        // PackageInfo#versionName always returns null in test environment...
+        assertNull(essentialPackageInfo.versionName);
         assertNotNull(essentialPackageInfo.firstInstallDate);
     }
 }
