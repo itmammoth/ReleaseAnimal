@@ -1,2 +1,2 @@
 # ReleaseAnimal
-An android library to display release notes dialog without pain.
+ReleaseAnimal is an android library to display release notes dialog without pain.
