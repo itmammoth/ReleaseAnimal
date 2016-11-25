@@ -14,7 +14,7 @@ Append the code below in your `build.gradle`.
 
 # Usage
 
-All you have to do is to create `res/xml/releaseanimal.xml` in your project directory.
+Create `res/xml/releaseanimal.xml` in your project directory.
 
     <?xml version="1.0" encoding="utf-8"?>
     <releaseNotes>
@@ -29,10 +29,25 @@ All you have to do is to create `res/xml/releaseanimal.xml` in your project dire
         </note>
     </releaseNotes>
 
+Show release notes dialog on your startup activity.
+
+    public class MainActivity extends AppCompatActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            ...
+            new ReleaseAnimal.Builder(this).show();
+        }
+        ...
+    }
+
+# Specification
+
 - ReleaseAnimal never shows notes that have already been shown to users again.
 - ReleaseAnimal never shows notes that had been released before the user installed your app.
 - ReleaseAnimal never shows notes that have future `date`.
-- Add attribute `force="true"` to force to show a note. (Probably for test)
+- Add attribute `force="true"` to a `note` element, then it will be shown in any case. (Probably for test)
 
 # Configuration
 
