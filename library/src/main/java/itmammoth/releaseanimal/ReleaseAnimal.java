@@ -37,10 +37,16 @@ public class ReleaseAnimal {
                     .findViewById(R.id.release_dialog_container);
             setView(layout);
             setTitle(R.string.releaseanimal_dialog_title);
-            setCancelable(false);
+            setCancelable(true);
             setPositiveButton(R.string.releaseanimal_close, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
+                    releaseNotesManager.markShown();
+                }
+            });
+            setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialogInterface) {
                     releaseNotesManager.markShown();
                 }
             });
