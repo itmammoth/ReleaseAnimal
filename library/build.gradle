@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
@@ -47,11 +46,16 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-publish {
-    userOrg = 'itmammoth-bintray'
-    groupId = 'itmammoth.releaseanimal'
-    artifactId = 'ReleaseAnimal'
-    publishVersion = '0.0.3'
-    desc = 'An android library to display release notes dialog without pain.'
-    website = 'https://github.com/itmammoth/ReleaseAnimal'
+// upload to maven
+def repo = new File(rootDir, "repository")
+apply plugin: 'maven'
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository url: "file://${repo.absolutePath}"
+            pom.version = '0.1.0'
+            pom.groupId = 'itmammoth'
+            pom.artifactId = 'ReleaseAnimal'
+        }
+    }
 }
