@@ -9,7 +9,8 @@ import org.junit.runner.RunWith;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 @RunWith(AndroidJUnit4.class)
 public class ParserTest {
@@ -18,7 +19,7 @@ public class ParserTest {
         Context context = InstrumentationRegistry.getTargetContext();
         List<ReleaseNote> notes = new Parser(context.getResources().getXml(R.xml.releaseanimal)).parse();
 
-        assertEquals(2, notes.size());
+        assertEquals(3, notes.size());
 
         ReleaseNote note = notes.get(0);
         assertEquals(new VersionName("1.0.0"), note.versionName);
@@ -30,5 +31,10 @@ public class ParserTest {
         assertEquals(Parser.SDF.parse("1900-01-02"), note.date);
         assertTrue(note.force);
         assertEquals("See the https://github.com/itmammoth/ReleaseAnimal for more information", note.messages.get(0));
+        note = notes.get(2);
+        assertEquals(new VersionName("3.0.0"), note.versionName);
+        assertEquals(Parser.SDF.parse("1900-01-03"), note.date);
+        assertTrue(note.force);
+        assertEquals("This is very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long message.", note.messages.get(0));
     }
 }

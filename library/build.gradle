@@ -3,13 +3,13 @@ apply plugin: 'com.novoda.bintray-release'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 3
-        versionName "0.1.0"
+        versionCode 4
+        versionName "0.1.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:appcompat-v7:25.1.1'
     // https://mvnrepository.com/artifact/org.apache.maven/maven-artifact
     compile group: 'org.apache.maven', name: 'maven-artifact', version: '3.3.9'
 
@@ -51,7 +51,7 @@ publish {
     userOrg = 'itmammoth-bintray2'
     groupId = 'itmammoth.releaseanimal'
     artifactId = 'ReleaseAnimal'
-    publishVersion = '0.1.0'
+    publishVersion = '0.1.1'
     desc = 'An android library to display release notes dialog without pain.'
     website = 'https://github.com/itmammoth/ReleaseAnimal'
 }

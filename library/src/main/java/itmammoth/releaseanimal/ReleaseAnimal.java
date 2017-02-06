@@ -1,13 +1,10 @@
 package itmammoth.releaseanimal;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
-import android.view.LayoutInflater;
-import android.view.View;
 
 public class ReleaseAnimal {
 
@@ -31,11 +28,6 @@ public class ReleaseAnimal {
         }
 
         private void setDefaultAttributes() {
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            @SuppressLint("InflateParams")
-            final View layout = inflater.inflate(R.layout.release_dialog, null)
-                    .findViewById(R.id.release_dialog_container);
-            setView(layout);
             setTitle(R.string.releaseanimal_dialog_title);
             setCancelable(true);
             setPositiveButton(R.string.releaseanimal_close, new DialogInterface.OnClickListener() {

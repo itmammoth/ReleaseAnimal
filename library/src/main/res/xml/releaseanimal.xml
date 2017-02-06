@@ -6,4 +6,7 @@
     <note date="1900-01-02" force="true" versionName="2.0.0">
         <message>See the https://github.com/itmammoth/ReleaseAnimal for more information</message>
     </note>
+    <note date="1900-01-03" force="true" versionName="3.0.0">
+        <message>This is very long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long long message.</message>
+    </note>
 </releaseNotes>
